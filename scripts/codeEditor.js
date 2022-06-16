@@ -449,29 +449,7 @@ function CodeEditor(textAreaDomID, width, height, game) {
     }
 
     this.createGist = function () {
-        var lvlNum = game._currentLevel;
-        var filename = 'untrusted-lvl' + lvlNum + '-solution.js';
-        var description = 'Solution to level ' + lvlNum + ' in Untrusted: http://alex.nisnevich.com/untrusted/';
-        var data = {
-            'files': {},
-            'description': description,
-            'public': true
-        };
-        data['files'][filename] = {
-            'content': this.getCode(true).replace(/\t/g, '    ')
-        };
-
-        var t = ['372f2dad', '3edbb23c', '7c82f871', '36a67eb8', '623e8b32'];
-        $.ajax({
-            'url': 'https://api.github.com/gists',
-            'type': 'POST',
-            'data': JSON.stringify(data),
-            'headers': { 'Authorization': 'token ' + t.join('') },
-            'success': function (data, status, xhr) {
-                $('#savedLevelMsg').html('Level ' + lvlNum + ' solution saved at <a href="'
-                    + data['html_url'] + '" target="_blank">' + data['html_url'] + '</a>');
-            }
-        });
+    
     }
 
     this.getGoodState = function (lvlNum) {
